@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  main-db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    hostname: antapp
+    ports:
+      - 5432:5432
+
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+
+    volumes:
+      - main-db:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    hostname: antapp
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  main-db:
